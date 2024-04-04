@@ -2,6 +2,8 @@ import { BellIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import TaskCard from '../components/tasks/TaskCard';
 import MyTask from '../components/tasks/MyTask';
 import { useEffect, useState } from 'react';
+// import Modal from '../components/ui/Modal';
+import AddTaskModal from '../components/tasks/AddTaskModal';
 
 
 
@@ -28,6 +30,9 @@ const Tasks = () => {
     const handleTheme = () => {
         setTheme(theme === "dark" ? "light" : "dark")
     }
+
+    const [isOpen, setIsOpen] = useState(false)
+
     return (
         <div className="h-screen grid grid-cols-12 bg-white dark:bg-black">
             <div className="col-span-9 px-10 pt-10">
@@ -42,7 +47,8 @@ const Tasks = () => {
                         <button className="border-2 border-secondary/20 hover:border-primary hover:bg-primary rounded-xl h-10 w-10 grid place-content-center text-secondary hover:text-white transition-all">
                             <BellIcon className="h-6 w-6" />
                         </button>
-                        <button className="btn btn-primary">Add Task</button>
+                        <button className="btn btn-primary" onClick={()=>setIsOpen(!isOpen)}>Add Task</button>
+                        <AddTaskModal isOpen={isOpen} setIsOpen={setIsOpen}></AddTaskModal>
 
                         <div>
 
